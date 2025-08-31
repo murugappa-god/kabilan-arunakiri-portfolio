@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KabilanArunakiri</title>
+    <link rel="icon" href="icon.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; padding: 0; 
+            background: #f0f0f0; /* light gray full background */
+            scroll-behavior: smooth; 
+            color: #222; 
+        }
+
+        /* Header */
+        header { 
+            background: #1CA150; 
+            color: #fff; 
+            padding: 40px 0; 
+            text-align: center; 
+        }
+
+        /* Navigation bar */
+        nav {
+            background: #138d3a;
+            padding: 12px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 20px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Content container */
+        .container { 
+            width: 90%; 
+            max-width: 900px; 
+            margin: 30px auto; 
+            padding: 24px; 
+            border-radius: 10px;
+            background: #e6e6e6; /* light gray section container */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .profile-photo { 
+            width: 180px; height: 180px; 
+            border-radius: 50%; 
+            border: 5px solid #1CA150; 
+            object-fit: cover; 
+            display: block; 
+            margin: 0 auto 24px auto; 
+        }
+
+        .details, .certificates, .contact { 
+            background: #fff; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 30px; 
+        }
+
+        .details-list { list-style: none; padding: 0; }
+        .details-list li { margin-bottom: 10px; font-size: 18px; }
+        h2 { color: #1CA150; font-size: 28px; }
+
+        /* Certificates */
+        .certificates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .certificates img { 
+            width: 100%; 
+            border-radius: 8px; 
+            border: 2px solid #ccc; 
+            transition: transform 0.3s, box-shadow 0.3s; 
+        }
+        .certificates img:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2); 
+        }
+
+        /* Forms */
+        form { display: flex; flex-direction: column; gap: 12px; }
+        input, textarea { 
+            padding: 10px; 
+            font-size: 16px; 
+            border-radius: 4px; 
+            border: 1px solid #ccc; 
+        }
+        button { 
+            background: #1CA150; 
+            color: #fff; 
+            padding: 10px; 
+            border: none; 
+            border-radius: 4px; 
+            font-size: 18px; 
+            cursor: pointer; 
+        }
+        button:hover { background: #138d3a; }
+
+        /* Footer */
+        footer { 
+            text-align: center; 
+            padding: 20px; 
+            background: #1CA150; 
+            color: #fff; 
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 10px; }
+            nav a { display: inline-block; margin: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Kabilan Arunakiri.s</h1>
+    <p>B.Tech in Artificial Intelligence and Data Science<br>AT MAM School of Engineering</p>
+</header>
+
+<!-- Navigation -->
+<nav>
+    <a href="#details">About</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#Resume">Resume</a>
+    <a href="#Contact">Contact</a>
+</nav>
+
+<div class="container">
+
+    <img src="profile photo.jpg" alt="Kabilan Photo" class="profile-photo" />
+
+    <section class="details" id="details">
+        <h2>About Me</h2>
+        <ul class="details-list">
+            <li><strong>Name:</strong> Kabilan</li>
+            <li><strong>Birthday:</strong> 23-10-2005</li>
+            <li><strong>Education:</strong> B.Tech-AI&DS</li>
+            <li><strong>Address:</strong> Pattukkottai, Thanjavur, India</li>
+            <li><strong>Phone:</strong> 8072964523</li>
+            <li><strong>Email:</strong> akabilan342@gmail.com</li>
+        </ul>
+    </section>
+
+
+    <section class="certificates" id="certificates">
+        <h2>My Certificates</h2>
+        <img src="MongoDB Certificate 1.jpg" alt="MongoDB Certificate 1" />
+        <img src="MongoDB Certificate 2.jpg" alt="MongoDB Certificate 2" />
+        <img src="Celonis Certificate.jpg" alt="Celonis Certificate" />
+        <img src="oracle.png" alt="oracle">
+        <img src="c programing.jpg" alt="c programing">
+        <img src="programing technique.jpg" alt="programing technique">
+        <img src="office automation.jpg" alt="office automation">
+        <img src="chess.jpg" alt="chess participate">
+        <img src="periyar.jpg" alt="event participate">
+    </section>
+
+    <section class="Resume" id="Resume">
+         <h2>my Resume</h2>
+        <img src="" alt="Resume">
+        </section>
+
+
+    <section class="contact" id="contact">
+        <h2>contact Me</h2>
+        <form action="mailto:akabilan342@gmail.com" method="post" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Mail</button>
+        </form>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer>
+    © 2025 Kabilan Arunakiri | Tiruchirappalli, India
+</footer>
+
+</body>
+</html>
