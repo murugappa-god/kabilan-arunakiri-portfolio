@@ -48,7 +48,7 @@
         }
 
         header h1 {
-            font-size: 56px;
+            font-size: 52px;
             font-weight: 900;
             letter-spacing: 2.5px;
             margin: 0 auto 14px;
@@ -81,7 +81,7 @@
         }
 
         header p {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 600;
             margin: 0;
             color: var(--accent-light);
@@ -104,14 +104,16 @@
 
         nav a {
             color: var(--main-blue);
-            margin: 0 15px;
+            margin: 0 12px;
             text-decoration: none;
-            font-size: 18px;
-            padding: 6px 14px;
+            font-size: 17px;
+            padding: 6px 12px;
             border-radius: 8px;
             transition: background-color 0.3s ease, color 0.3s ease;
             font-family: 'Montserrat', sans-serif;
             display: inline-block;
+            min-width: 70px;
+            text-align: center;
         }
 
         nav a:hover,
@@ -120,7 +122,7 @@
             background: var(--main-blue);
             box-shadow: 0 4px 10px rgba(58, 123, 213, 0.6);
             text-decoration: none;
-            transform: scale(1.06);
+            transform: scale(1.05);
         }
 
         /* Sidebar Navigation */
@@ -166,25 +168,71 @@
             box-shadow: 0 0 22px var(--main-blue);
         }
 
-        /* Responsive: sidebar bottom for mobiles */
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            header h1 {
+                font-size: 42px;
+                border-right: 2px solid rgba(255, 255, 255, 0.5);
+            }
+
+            nav a {
+                font-size: 16px;
+                min-width: 60px;
+                margin: 0 8px;
+                padding: 6px 10px;
+            }
+
+            .sidebar {
+                width: 48px;
+                gap: 18px;
+                padding: 24px 10px 24px 10px;
+            }
+
+            .sidebar a {
+                width: 42px;
+                height: 42px;
+                font-size: 22px;
+            }
+
+            .container {
+                padding: 22px 24px;
+            }
+        }
+
         @media (max-width: 600px) {
+            /* Sidebar becomes bottom nav */
             .sidebar {
                 flex-direction: row;
                 left: 50%;
                 bottom: 0;
                 top: auto;
                 transform: translateX(-50%);
-                padding: 10px 22px 10px 22px;
-                border-radius: 22px 22px 0 0;
+                padding: 10px 20px 10px 20px;
+                border-radius: 20px 20px 0 0;
                 width: min(96vw, 440px);
-                height: 62px;
+                height: 60px;
                 gap: 20px;
+                box-shadow: 0 -2px 10px #b0bde799;
             }
 
             .sidebar a {
                 width: 48px;
                 height: 48px;
-                font-size: 28px;
+                font-size: 26px;
+            }
+
+            header h1 {
+                font-size: 36px;
+                border-right: 2px solid rgba(255, 255, 255, 0.5);
+                white-space: normal;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .container {
+                padding: 16px 18px 100px 18px; /* bottom padding for mobile nav */
             }
         }
 
@@ -200,6 +248,7 @@
             position: relative;
             overflow: visible;
             user-select: text;
+            transition: padding 0.3s ease;
         }
 
         /* Profile photo */
@@ -210,7 +259,7 @@
             border: 6px solid var(--main-blue);
             object-fit: cover;
             display: block;
-            margin: 16px auto 32px auto;
+            margin: 20px auto 32px auto;
             box-shadow: 0 10px 32px #4e6fbf5e;
             transition: box-shadow 0.35s ease, transform 0.41s ease;
             filter: drop-shadow(0 0 6px var(--main-blue));
@@ -258,7 +307,7 @@
 
         .details-list li {
             margin-bottom: 14px;
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 600;
             color: var(--text-dark);
             border-left: 5px solid var(--main-blue);
@@ -274,7 +323,7 @@
         /* Section titles */
         h2 {
             color: var(--main-blue);
-            font-size: 32px;
+            font-size: 30px;
             margin-bottom: 18px;
             font-weight: 900;
             letter-spacing: 1.7px;
@@ -287,7 +336,7 @@
         .certificates {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 22px;
+            gap: 20px;
         }
 
         .certificates img {
@@ -334,7 +383,7 @@
         input,
         textarea {
             padding: 14px 20px;
-            font-size: 18px;
+            font-size: 16px;
             border-radius: 8px;
             border: 2px solid var(--border-color);
             font-family: inherit;
@@ -355,10 +404,10 @@
         button {
             background: var(--main-blue);
             color: #fff;
-            padding: 16px 22px;
+            padding: 14px 20px;
             border: none;
             border-radius: 10px;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
             letter-spacing: 1px;
             cursor: pointer;
@@ -370,7 +419,7 @@
         button:hover {
             background: #134aa7;
             box-shadow: 0 0 30px #183f8fcc;
-            transform: translateY(-3px) scale(1.1);
+            transform: translateY(-3px) scale(1.07);
         }
 
         /* Internship and Skill section gentle glow effect for headings */
@@ -407,7 +456,7 @@
             background: #e3e9f6;
             color: var(--accent-dark);
             padding: 12px 22px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             border-radius: 28px;
             box-shadow: 0 3px 16px #c4cddb88;
@@ -418,7 +467,7 @@
         }
 
         .skill-item:hover {
-            transform: scale(1.12) translateY(-3px);
+            transform: scale(1.1) translateY(-3px);
             box-shadow: 0 8px 36px #8a9dcfcc;
         }
 
@@ -440,27 +489,6 @@
             box-shadow: 0 0 18px 6px var(--main-blue), 0 4px 20px var(--main-blue);
             border: 3px solid var(--main-blue);
             transition: border 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        /* Responsive Tweaks */
-        @media (max-width: 900px) {
-            .container {
-                padding: 18px 24px;
-            }
-            .details-list li {
-                font-size: 17px;
-            }
-            .skill-list {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 700px) {
-            nav a {
-                margin: 10px 12px;
-                padding: 8px 16px;
-                font-size: 16px;
-            }
         }
     </style>
 </head>
