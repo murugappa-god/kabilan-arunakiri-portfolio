@@ -1,196 +1,647 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>KabilanArunakiri</title>
-    <link rel="icon" href="icon.webp">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" href="icon.webp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 0; padding: 0; 
-            background: #f0f0f0; /* light gray full background */
-            scroll-behavior: smooth; 
-            color: #222; 
+        :root {
+            --main-blue: #3a7bd5;
+            --main-gray: #6c757d;
+            --accent-light: #a2b1c6;
+            --accent-dark: #2c3e50;
+            --bg-light: #f9fafb;
+            --bg-section: #ffffff;
+            --border-color: #d1d9e6;
+            --text-dark: #212529;
+            --text-muted: #6c757d;
+            --shadow-light: rgba(60, 67, 86, 0.05);
+            --shadow-dark: rgba(44, 62, 80, 0.1);
+            --glow-color-light: #5886d9;
+            --glow-color-muted: #9fabc9;
+            --glow-color-subtle: #d0d9f5;
         }
 
-        /* Header */
-        header { 
-            background: #1CA150; 
-            color: #fff; 
-            padding: 40px 0; 
-            text-align: center; 
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-light);
+            scroll-behavior: smooth;
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Navigation bar */
+        /* Header with typing and gentle glow effect */
+        header {
+            background: linear-gradient(90deg, var(--main-blue), #6a8ccb);
+            color: #fff;
+            padding: 48px 15px 38px;
+            text-align: center;
+            box-shadow: 0 4px 18px var(--shadow-dark);
+            position: relative;
+            z-index: 2;
+            user-select: none;
+        }
+
+        header h1 {
+            font-size: 56px;
+            font-weight: 900;
+            letter-spacing: 2.5px;
+            margin: 0 auto 14px;
+            max-width: 900px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid rgba(255, 255, 255, 0.5);
+            box-sizing: border-box;
+            animation: typing 3.5s steps(18, end), blink-caret 0.8s step-end infinite;
+            text-shadow:
+                0 0 8px var(--glow-color-light),
+                0 0 18px var(--glow-color-muted),
+                0 0 38px var(--glow-color-subtle);
+            filter: drop-shadow(0 0 4px var(--glow-color-muted));
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 18ch;
+            }
+        }
+
+        @keyframes blink-caret {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        header p {
+            font-size: 22px;
+            font-weight: 600;
+            margin: 0;
+            color: var(--accent-light);
+            text-shadow: 0 0 4px #5479bd70;
+        }
+
+        /* Top Navigation Bar */
         nav {
-            background: #138d3a;
-            padding: 12px;
+            background: #f1f4f9;
+            padding: 14px 0;
             text-align: center;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 1001;
+            box-shadow: 0 2px 8px var(--shadow-light);
+            font-weight: 600;
+            letter-spacing: 1.1px;
+            user-select: none;
         }
+
         nav a {
-            color: #fff;
-            margin: 0 20px;
+            color: var(--main-blue);
+            margin: 0 15px;
             text-decoration: none;
             font-size: 18px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* Content container */
-        .container { 
-            width: 90%; 
-            max-width: 900px; 
-            margin: 30px auto; 
-            padding: 24px; 
-            border-radius: 10px;
-            background: #e6e6e6; /* light gray section container */
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            display: inline-block;
         }
 
-        .profile-photo { 
-            width: 180px; height: 180px; 
-            border-radius: 50%; 
-            border: 5px solid #1CA150; 
-            object-fit: cover; 
-            display: block; 
-            margin: 0 auto 24px auto; 
+        nav a:hover,
+        nav a.active {
+            color: #fff;
+            background: var(--main-blue);
+            box-shadow: 0 4px 10px rgba(58, 123, 213, 0.6);
+            text-decoration: none;
+            transform: scale(1.06);
         }
 
-        .details, .certificates, .contact { 
-            background: #fff; 
-            padding: 20px; 
-            border-radius: 8px; 
-            margin-bottom: 30px; 
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #e9efff;
+            padding: 28px 12px 28px 12px;
+            border-radius: 0 28px 28px 0;
+            box-shadow: 2px 7px 35px #b0bde773;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            user-select: none;
+            width: 56px;
         }
 
-        .details-list { list-style: none; padding: 0; }
-        .details-list li { margin-bottom: 10px; font-size: 18px; }
-        h2 { color: #1CA150; font-size: 28px; }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            color: var(--main-blue);
+            background: #c8d1ec;
+            border-radius: 50%;
+            font-size: 26px;
+            box-shadow: 0 5px 14px #afbddb92;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            line-height: 1;
+        }
 
-        /* Certificates */
+        .sidebar a.active,
+        .sidebar a:hover {
+            background: var(--main-blue);
+            color: #fff;
+            transform: scale(1.25);
+            box-shadow: 0 0 22px var(--main-blue);
+        }
+
+        /* Responsive: sidebar bottom for mobiles */
+        @media (max-width: 600px) {
+            .sidebar {
+                flex-direction: row;
+                left: 50%;
+                bottom: 0;
+                top: auto;
+                transform: translateX(-50%);
+                padding: 10px 22px 10px 22px;
+                border-radius: 22px 22px 0 0;
+                width: min(96vw, 440px);
+                height: 62px;
+                gap: 20px;
+            }
+
+            .sidebar a {
+                width: 48px;
+                height: 48px;
+                font-size: 28px;
+            }
+        }
+
+        /* Container */
+        .container {
+            width: 95%;
+            max-width: 920px;
+            margin: 55px auto;
+            padding: 26px 32px;
+            border-radius: 24px;
+            background: var(--bg-section);
+            box-shadow: 0 13px 34px var(--shadow-light);
+            position: relative;
+            overflow: visible;
+            user-select: text;
+        }
+
+        /* Profile photo */
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 6px solid var(--main-blue);
+            object-fit: cover;
+            display: block;
+            margin: 16px auto 32px auto;
+            box-shadow: 0 10px 32px #4e6fbf5e;
+            transition: box-shadow 0.35s ease, transform 0.41s ease;
+            filter: drop-shadow(0 0 6px var(--main-blue));
+        }
+
+        .profile-photo:hover {
+            box-shadow: 0 15px 40px #3a74d1aa;
+            transform: scale(1.07);
+        }
+
+        /* Section containers with pop-up effect */
+        .details,
+        .internship,
+        .skill,
+        .certificates,
+        .Resume,
+        .contact {
+            background: var(--bg-section);
+            padding: 28px 30px 28px 30px;
+            border-radius: 16px;
+            margin-bottom: 54px;
+            box-shadow: 0 7px 22px var(--shadow-light);
+            opacity: 0;
+            transform: scale(0.91) translateY(36px);
+            transition: all 0.68s cubic-bezier(0.63, 0, 0.23, 1.04);
+            user-select: text;
+        }
+
+        .details.visible,
+        .internship.visible,
+        .skill.visible,
+        .certificates.visible,
+        .Resume.visible,
+        .contact.visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Details List */
+        .details-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .details-list li {
+            margin-bottom: 14px;
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-left: 5px solid var(--main-blue);
+            padding-left: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .details-list li:hover {
+            border-color: var(--accent-light);
+            color: var(--main-blue);
+        }
+
+        /* Section titles */
+        h2 {
+            color: var(--main-blue);
+            font-size: 32px;
+            margin-bottom: 18px;
+            font-weight: 900;
+            letter-spacing: 1.7px;
+            text-transform: uppercase;
+            text-shadow: 0 1px 3px var(--accent-light);
+            user-select: text;
+        }
+
+        /* Certificates grid */
         .certificates {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 22px;
+        }
+
+        .certificates img {
+            width: 100%;
+            border-radius: 14px;
+            border: 2px solid var(--border-color);
+            background: #fdfdfd;
+            transition: transform 0.36s ease, box-shadow 0.36s ease, border-color 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 7px 16px var(--shadow-light);
+            user-select: none;
+        }
+
+        .certificates img:hover {
+            transform: scale(1.07) rotate(-2deg);
+            box-shadow: 0 10px 32px var(--main-blue);
+            border-color: var(--main-blue);
+            filter: drop-shadow(0 0 10px var(--main-blue));
+        }
+
+        /* Resume image placeholder */
+        .Resume img[alt='Resume'] {
+            width: 100%;
+            max-width: 540px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 16px;
+            border: 2px dashed var(--accent-light);
+            min-height: 140px;
+            background: #f1f5f9;
+            filter: drop-shadow(0 0 6px var(--accent-light));
+            user-select: none;
+        }
+
+        /* Contact form */
+        .contact form {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        input,
+        textarea {
+            padding: 14px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+            resize: vertical;
+            color: var(--text-dark);
+            user-select: text;
+            background: #fff;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--main-blue);
+            box-shadow: 0 0 10px var(--main-blue);
+        }
+
+        button {
+            background: var(--main-blue);
+            color: #fff;
+            padding: 16px 22px;
+            border: none;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 20px #507bc7cc;
+            transition: background 0.22s ease, transform 0.22s ease;
+            user-select: none;
+        }
+
+        button:hover {
+            background: #134aa7;
+            box-shadow: 0 0 30px #183f8fcc;
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        /* Internship and Skill section gentle glow effect for headings */
+        .internship h2,
+        .skill h2 {
+            animation: glowPulse 3.5s ease-in-out infinite alternate;
+            color: var(--main-blue);
+        }
+
+        @keyframes glowPulse {
+            0% {
+                text-shadow:
+                    0 0 6px var(--accent-light),
+                    0 0 16px var(--main-blue),
+                    0 0 30px var(--accent-light);
+            }
+            100% {
+                text-shadow:
+                    0 0 12px var(--main-blue),
+                    0 0 24px var(--accent-light),
+                    0 0 38px var(--main-blue);
+            }
+        }
+
+        /* Skill list styling */
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
             gap: 16px;
+            margin-top: 14px;
         }
 
-        .certificates img { 
-            width: 100%; 
-            border-radius: 8px; 
-            border: 2px solid #ccc; 
-            transition: transform 0.3s, box-shadow 0.3s; 
-        }
-        .certificates img:hover { 
-            transform: scale(1.05); 
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2); 
+        .skill-item {
+            background: #e3e9f6;
+            color: var(--accent-dark);
+            padding: 12px 22px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 28px;
+            box-shadow: 0 3px 16px #c4cddb88;
+            transition: transform 0.3s ease, box-shadow 0.4s ease;
+            user-select: none;
+            cursor: default;
+            white-space: nowrap;
         }
 
-        /* Forms */
-        form { display: flex; flex-direction: column; gap: 12px; }
-        input, textarea { 
-            padding: 10px; 
-            font-size: 16px; 
-            border-radius: 4px; 
-            border: 1px solid #ccc; 
+        .skill-item:hover {
+            transform: scale(1.12) translateY(-3px);
+            box-shadow: 0 8px 36px #8a9dcfcc;
         }
-        button { 
-            background: #1CA150; 
-            color: #fff; 
-            padding: 10px; 
-            border: none; 
-            border-radius: 4px; 
-            font-size: 18px; 
-            cursor: pointer; 
-        }
-        button:hover { background: #138d3a; }
 
         /* Footer */
-        footer { 
-            text-align: center; 
-            padding: 20px; 
-            background: #1CA150; 
-            color: #fff; 
+        footer {
+            text-align: center;
+            padding: 28px 0 24px 0;
+            background: var(--main-blue);
+            color: #fff;
+            font-size: 18px;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            user-select: none;
+            box-shadow: inset 0 10px 20px #2d4da3cc;
+        }
+
+        /* Section highlight on anchor jump */
+        section:target {
+            box-shadow: 0 0 18px 6px var(--main-blue), 0 4px 20px var(--main-blue);
+            border: 3px solid var(--main-blue);
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 900px) {
+            .container {
+                padding: 18px 24px;
+            }
+            .details-list li {
+                font-size: 17px;
+            }
+            .skill-list {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 700px) {
-            .container { padding: 10px; }
-            nav a { display: inline-block; margin: 10px; }
+            nav a {
+                margin: 10px 12px;
+                padding: 8px 16px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sideNav" aria-label="Sidebar navigation">
+        <a href="#details" title="About" id="s-about" aria-label="About section">👤</a>
+        <a href="#internship" title="Internship" id="s-internship" aria-label="Internship section">🏢</a>
+        <a href="#skill" title="Skills" id="s-skill" aria-label="Skills section">💡</a>
+        <a href="#certificates" title="Certificates" id="s-cert" aria-label="Certificates section">📜</a>
+        <a href="#Resume" title="Resume" id="s-resume" aria-label="Resume section">📄</a>
+        <a href="#contact" title="Contact" id="s-contact" aria-label="Contact section">✉️</a>
+    </aside>
 
-<header>
-    <h1>Kabilan Arunakiri.s</h1>
-    <p>B.Tech in Artificial Intelligence and Data Science<br>AT MAM School of Engineering</p>
-</header>
+    <header>
+        <h1>Kabilan Arunakiri.s</h1>
+        <p>B.Tech in Artificial Intelligence and Data Science<br />AT MAM School of Engineering</p>
+    </header>
 
-<!-- Navigation -->
-<nav>
-    <a href="#details">About</a>
-    <a href="#certificates">Certificates</a>
-    <a href="#Resume">Resume</a>
-    <a href="#Contact">Contact</a>
-</nav>
+    <nav>
+        <a href="#details">About</a>
+        <a href="#internship">Internship</a>
+        <a href="#skill">Skills</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#Resume">Resume</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-<div class="container">
+    <div class="container">
+        <img
+            src="profile photo.jpg"
+            alt="Kabilan Photo"
+            class="profile-photo"
+            loading="lazy"
+            decoding="async"
+        />
 
-    <img src="profile photo.jpg" alt="Kabilan Photo" class="profile-photo" />
-
-    <section class="details" id="details">
-        <h2>About Me</h2>
-        <ul class="details-list">
-            <li><strong>Name:</strong> Kabilan</li>
-            <li><strong>Birthday:</strong> 23-10-2005</li>
-            <li><strong>Education:</strong> B.Tech-AI&DS</li>
-            <li><strong>Address:</strong> Pattukkottai, Thanjavur, India</li>
-            <li><strong>Phone:</strong> 8072964523</li>
-            <li><strong>Email:</strong> akabilan342@gmail.com</li>
-        </ul>
-    </section>
-
-
-    <section class="certificates" id="certificates">
-        <h2>My Certificates</h2>
-        <img src="MongoDB Certificate 1.jpg" alt="MongoDB Certificate 1" />
-        <img src="MongoDB Certificate 2.jpg" alt="MongoDB Certificate 2" />
-        <img src="Celonis Certificate.jpg" alt="Celonis Certificate" />
-        <img src="oracle.png" alt="oracle">
-        <img src="c programing.jpg" alt="c programing">
-        <img src="programing technique.jpg" alt="programing technique">
-        <img src="office automation.jpg" alt="office automation">
-        <img src="chess.jpg" alt="chess participate">
-        <img src="periyar.jpg" alt="event participate">
-    </section>
-
-    <section class="Resume" id="Resume">
-         <h2>my Resume</h2>
-        <img src="" alt="Resume">
+        <section class="details" id="details" tabindex="-1" aria-label="About me section">
+            <h2>About Me</h2>
+            <ul class="details-list">
+                <li><strong>Name:</strong> Kabilan</li>
+                <li><strong>Birthday:</strong> 23-10-2005</li>
+                <li><strong>Education:</strong> B.Tech-AI&amp;DS</li>
+                <li><strong>Address:</strong> Pattukkottai, Thanjavur, India</li>
+                <li><strong>Phone:</strong> 8072964523</li>
+                <li><strong>Email:</strong> akabilan342@gmail.com</li>
+            </ul>
         </section>
 
+        <section class="internship" id="internship" tabindex="-1" aria-label="Internship section">
+            <h2>Internship</h2>
+            <p><strong>Caparo Engineering India Limited</strong></p>
+            <p>Caparo is a leading diversified business group with interests in design, manufacture, marketing and distribution of value-added steel and niche engineering products for the Automobile and Engineering industries.</p>
+        </section>
 
-    <section class="contact" id="contact">
-        <h2>contact Me</h2>
-        <form action="mailto:akabilan342@gmail.com" method="post" enctype="text/plain">
-            <input type="text" name="name" placeholder="Your Name" required />
-            <input type="email" name="email" placeholder="Your Email" required />
-            <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Mail</button>
-        </form>
-    </section>
-</div>
+        <section class="skill" id="skill" tabindex="-1" aria-label="Skills section">
+            <h2>Skills</h2>
+            <div class="skill-list" aria-label="List of skills">
+                <div class="skill-item">Python</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">MS Office</div>
+                <div class="skill-item">Web Development</div>
+                <div class="skill-item">HTML</div>
+                <div class="skill-item">CSS</div>
+                <div class="skill-item">JavaScript</div>
+            </div>
+        </section>
 
-<!-- Footer -->
-<footer>
-    © 2025 Kabilan Arunakiri | Tiruchirappalli, India
-</footer>
+        <section
+            class="certificates"
+            id="certificates"
+            tabindex="-1"
+            aria-label="Certificates section"
+        >
+            <h2>My Certificates</h2>
+            <img src="MongoDB Certificate 1.jpg" alt="MongoDB Certificate 1" loading="lazy" />
+            <img src="MongoDB Certificate 2.jpg" alt="MongoDB Certificate 2" loading="lazy" />
+            <img src="Celonis Certificate.jpg" alt="Celonis Certificate" loading="lazy" />
+            <img src="oracle.png" alt="Oracle Certificate" loading="lazy" />
+            <img src="c programing.jpg" alt="C Programming Certificate" loading="lazy" />
+            <img src="programing technique.jpg" alt="Programming Technique Certificate" loading="lazy" />
+            <img src="office automation.jpg" alt="Office Automation Certificate" loading="lazy" />
+            <img src="chess.jpg" alt="Chess Participation Certificate" loading="lazy" />
+            <img src="periyar.jpg" alt="Event Participation Certificate" loading="lazy" />
+        </section>
 
+        <section
+            class="Resume"
+            id="Resume"
+            tabindex="-1"
+            aria-label="Resume section"
+        >
+            <h2>My Resume</h2>
+            <img src="" alt="Resume placeholder" />
+        </section>
+
+        <section
+            class="contact"
+            id="contact"
+            tabindex="-1"
+            aria-label="Contact section"
+        >
+            <h2>Contact Me</h2>
+            <form
+                action="mailto:akabilan342@gmail.com"
+                method="post"
+                enctype="text/plain"
+                novalidate
+            >
+                <input type="text" name="name" placeholder="Your Name" required autocomplete="name" />
+                <input type="email" name="email" placeholder="Your Email" required autocomplete="email" />
+                <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Mail</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        © 2025 Kabilan Arunakiri | Tiruchirappalli, India
+    </footer>
+
+    <script>
+        // Activate popup animation when elements scroll into view
+        function revealSections() {
+            document.querySelectorAll('.details, .internship, .skill, .certificates, .Resume, .contact').forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        // Initial run and on scroll
+        window.addEventListener('scroll', revealSections);
+        window.addEventListener('load', () => {
+            revealSections();
+            activateSidebar();
+        });
+
+        // Reveal after navigation jump
+        document.querySelectorAll('nav a, .sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                setTimeout(revealSections, 180);
+            });
+        });
+
+        // Sidebar highlight depending on scroll position
+        const sections = ['details', 'internship', 'skill', 'certificates', 'Resume', 'contact'];
+        function activateSidebar() {
+            let activeIndex = 0;
+            for (let i = 0; i < sections.length; i++) {
+                const sec = document.getElementById(sections[i]);
+                if (sec && sec.getBoundingClientRect().top - 120 < window.innerHeight / 2) {
+                    activeIndex = i;
+                }
+            }
+            document.querySelectorAll('.sidebar a').forEach((link, i) => {
+                link.classList.toggle('active', i === activeIndex);
+            });
+            document.querySelectorAll('nav a').forEach((link, i) => {
+                link.classList.toggle('active', i === activeIndex);
+            });
+        }
+        window.addEventListener('scroll', activateSidebar);
+
+        // Smooth scroll fix for side nav anchors (offset for sticky nav)
+        document.querySelectorAll('.sidebar a').forEach(a => {
+            a.addEventListener('click', e => {
+                const targetId = a.getAttribute('href').slice(1);
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: targetEl.offsetTop - 70,
+                        behavior: 'smooth',
+                    });
+                    // Focus the section for accessibility
+                    setTimeout(() => targetEl.focus(), 600);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
